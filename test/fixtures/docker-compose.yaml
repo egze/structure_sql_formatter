@@ -1,0 +1,40 @@
+services:
+  postgres_10:
+    image: postgres:10
+    ports:
+      - 54310:5432
+    healthcheck:
+      test: ["CMD-SHELL", "PGUSER=postgres", "pg_isready"]
+      interval: 1s
+      timeout: 10s
+      retries: 5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres_10
+  postgres_12:
+    image: postgres:12
+    ports:
+      - 54312:5432
+    healthcheck:
+      test: ["CMD-SHELL", "PGUSER=postgres", "pg_isready"]
+      interval: 1s
+      timeout: 10s
+      retries: 5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres_12
+  postgres_16:
+    image: postgres:16
+    ports:
+      - 54316:5432
+    healthcheck:
+      test: ["CMD-SHELL", "PGUSER=postgres", "pg_isready"]
+      interval: 1s
+      timeout: 10s
+      retries: 5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres_16
