@@ -123,7 +123,7 @@ defmodule StructureSqlFormatter do
 
   defp remove_useless_version_specific_parts_of_comments(sql, true = _enabled) do
     sql
-    |> String.replace(~r/^-- (.*); Schema: ([\w_\.]+|-); Owner: -.*/, "-- \\1")
+    |> String.replace(~r/^-- (.*); Schema: ([\w_\.]+|-); Owner: -.*$/m, "-- \\1")
   end
 
   defp remove_useless_version_specific_parts_of_comments(sql, _disabled), do: sql
