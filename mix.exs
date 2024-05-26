@@ -1,8 +1,8 @@
 defmodule StructureSqlFormatter.MixProject do
   use Mix.Project
 
-  @version "1.0.1"
-  @source_url "https://github.com/egze/stable_jason"
+  @version "1.0.2"
+  @source_url "https://github.com/egze/structure_sql_formatter"
 
   def project do
     [
