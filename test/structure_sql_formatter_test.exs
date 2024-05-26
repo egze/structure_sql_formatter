@@ -172,7 +172,7 @@ defmodule StructureSqlFormatterTest do
         ~s"""
         SET lock_timeout = 0;
 
-        -- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: -
+        -- Name: pg_stat_statements; Type: EXTENSION
 
         CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
         """
@@ -216,7 +216,7 @@ defmodule StructureSqlFormatterTest do
         ~s"""
         SET lock_timeout = 0;
 
-        -- Name: pg_buffercache; Type: EXTENSION; Schema: -; Owner: -
+        -- Name: pg_buffercache; Type: EXTENSION
 
         CREATE EXTENSION IF NOT EXISTS pg_buffercache WITH SCHEMA public;
         """
@@ -260,7 +260,7 @@ defmodule StructureSqlFormatterTest do
         ~s"""
         SET lock_timeout = 0;
 
-        -- Name: EXTENSION btree_gist; Type: COMMENT; Schema: -; Owner: -
+        -- Name: EXTENSION btree_gist; Type: COMMENT
 
         COMMENT ON EXTENSION btree_gist IS 'support for indexing common datatypes in GiST';
         """
@@ -273,6 +273,10 @@ defmodule StructureSqlFormatterTest do
     setup do
       sql =
         ~s"""
+        -- Name: whatever; Type: EXTENSION; Schema: -; Owner: -
+
+        CREATE EXTENSION IF NOT EXISTS whatever WITH SCHEMA public;
+
         -- Name: whatever; Type: EXTENSION; Schema: -; Owner: -
 
         CREATE EXTENSION IF NOT EXISTS whatever WITH SCHEMA public;
@@ -289,6 +293,10 @@ defmodule StructureSqlFormatterTest do
         -- Name: whatever; Type: EXTENSION
 
         CREATE EXTENSION IF NOT EXISTS whatever WITH SCHEMA public;
+
+        -- Name: whatever; Type: EXTENSION
+
+        CREATE EXTENSION IF NOT EXISTS whatever WITH SCHEMA public;
         """
 
       assert expected_sql == formatted_sql
@@ -302,6 +310,10 @@ defmodule StructureSqlFormatterTest do
 
       expected_sql =
         ~s"""
+        -- Name: whatever; Type: EXTENSION; Schema: -; Owner: -
+
+        CREATE EXTENSION IF NOT EXISTS whatever WITH SCHEMA public;
+
         -- Name: whatever; Type: EXTENSION; Schema: -; Owner: -
 
         CREATE EXTENSION IF NOT EXISTS whatever WITH SCHEMA public;
@@ -393,15 +405,15 @@ defmodule StructureSqlFormatterTest do
             NO MAXVALUE
             CACHE 1;
 
-        -- Name: some_table_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+        -- Name: some_table_id_seq; Type: SEQUENCE OWNED BY
 
         ALTER SEQUENCE public.some_table_id_seq OWNED BY public.some_table.id;
 
-        -- Name: some_table id; Type: DEFAULT; Schema: public; Owner: -
+        -- Name: some_table id; Type: DEFAULT
 
         ALTER TABLE ONLY public.some_table ALTER COLUMN id SET DEFAULT nextval('public.some_table_id_seq'::regclass);
 
-        -- Name: some_table some_table_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+        -- Name: some_table some_table_pkey; Type: CONSTRAINT
 
         ALTER TABLE ONLY public.some_table
             ADD CONSTRAINT some_table_pkey PRIMARY KEY (id);
