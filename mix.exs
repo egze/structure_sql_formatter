@@ -43,7 +43,6 @@ defmodule StructureSqlFormatter.MixProject do
     [
       main: "readme",
       name: "StructureSqlFormatter",
-      source_ref: "v#{@version}",
       canonical: "http://hexdocs.pm/structure_sql_formatter",
       source_url: @source_url,
       extras: ["README.md", "CHANGELOG.md", "LICENSE.md"]
